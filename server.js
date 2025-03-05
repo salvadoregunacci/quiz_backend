@@ -20,9 +20,8 @@ app.use("/users", authRouter);
 app.use("/category", categoryRouter);
 app.use("/items", itemRouter);
 
-
 function appStart() {
-    mongoose.connect("mongodb+srv://salvadoregunacci6666:zWUvOXvfTm6TuzCk@cluster0.lmk9yga.mongodb.net/quiz?retryWrites=true&w=majority")
+    mongoose.connect(process.env.DB)
         .then(() => console.log("DB connect OK"))
         .catch((err) => console.log("DB connect error", err));
 

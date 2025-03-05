@@ -110,7 +110,7 @@ class UserController {
 
             file = file[0];
             fileName = Date.now() + "-" + file.originalname;
-            filePath = req.protocol + "://" + req.get("host") + "/public/images/avatars/" + fileName;
+            filePath = "/public/images/avatars/" + fileName;
 
             if (user.avatar) {
                 oldAvatar = user.avatar.split("/avatars/")[1];

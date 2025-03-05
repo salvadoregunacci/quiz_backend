@@ -18,7 +18,7 @@ class CategoryController {
 
             const file = req.files[0];
             const fileName = Date.now() + "-" + file?.originalname;
-            const filePath = req.protocol + "://" + req.get("host") + "/public/images/" + fileName;
+            const filePath = "/public/images/" + fileName;
 
 
             if (file) {
@@ -100,7 +100,6 @@ class CategoryController {
             }
 
             if (file) {
-                const prefixUrl = req.protocol + "://" + req.get("host");
                 const unlinkAsync = util.promisify(fs.unlink);
                 const oldFileName = doc["preview"].split("/images/")[1];
 
@@ -109,7 +108,7 @@ class CategoryController {
                 await unlinkAsync(`public/images/${oldFileName}`);
 
                 fs.writeFileSync(`public/images/${fileName}`, file.buffer);
-                filePath = prefixUrl + "/public/images/" + fileName;
+                filePath = "/public/images/" + fileName;
             }
 
             const updateDoc = await Category.findOneAndUpdate(
